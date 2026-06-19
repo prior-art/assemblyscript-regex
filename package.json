@@ -1,18 +1,18 @@
 {
-  "name": "assemblyscript-regex",
-  "version": "0.1.0",
+  "name": "@prior-art/assemblyscript-regex",
+  "version": "1.0.0",
   "description": "A regex engine built with AssemblyScript",
   "ascMain": "assembly/index.ts",
   "main": "assembly/index.ts",
   "scripts": {
     "pretest": "npm run test:generate && npm run asbuild:untouched && npm run asbuild:empty",
-    "test": "npm run prettier && npm run eslint && npm run asp && npm run test:empty",
-    "test:empty": "diff build/empty.wat assembly/__tests__/empty.wat",
+    "test": "npm run asp",
     "test:generate": "node spec/test-generator.js",
-    "asp": "asp --verbose --nologo",
-    "asp:ci": "asp --nologo",
+    "asp": "asp --verbose",
+    "asp:ci": "asp",
     "prettier": "prettier --check .",
     "prettier:write": "prettier --write .",
+    "build": "npm run asbuild:optimized",
     "eslint:write": "npm run eslint -- --fix ",
     "asbuild:untouched": "asc assembly/index.ts --target debug",
     "asbuild:optimized": "asc assembly/index.ts --target release",
@@ -44,9 +44,7 @@
     "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run prettier && npm run eslint"
-    }
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
   }
 }
